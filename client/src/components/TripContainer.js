@@ -24,8 +24,8 @@ function TripContainer({trips}){
           width: "100%",
         }}
       >
-        <Container style={{}}>
-          <Row xs={4}>{tripDiv}</Row>
+        <Container >
+          <Row xs={1}>{tripDiv}</Row>
         </Container>
       </div>
     )

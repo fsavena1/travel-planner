@@ -5,7 +5,7 @@ class TripsController < ApplicationController
     end 
     
     def show 
-        trip = Trip.find_by(id: session[:user_id])
+        trip = trip_find
         if trip.present?
             render json: trip, status: 200
         else 

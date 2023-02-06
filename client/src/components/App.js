@@ -6,6 +6,7 @@ import Login from "./Login";
 import NavBar from "./NavBar";
 import SignupPage from "./SignupPage";
 import TripContainer from "./TripContainer";
+import TripDetails from "./TripDetails";
 
 
 function App() {
@@ -65,6 +66,7 @@ function handleNewTrip(newTrip) {
         <Route exact path="/" element={<Login onLogin={handleLogin} />} />
         <Route exact path="/signup" element={<SignupPage setUser={setUser} />} />
         <Route exact path="/create" element={<CreateTrip user={user} handleNewTrip={handleNewTrip} />} />
+        <Route exact path="/trip/:id" element={<TripDetails user={user} />} />
         
       </Routes>
     </div>
