@@ -12,6 +12,7 @@ import TripDetails from "./TripDetails";
 function App() {
   const [user, setUser] = useState(null)
   const [trips, setTrips] = useState([])
+  const [activities, setActivities] = useState([])
   const [loading, setLoading] = useState(true)
   const [errors, setErrors] = useState('')
 
@@ -44,6 +45,22 @@ function App() {
   }, []);
   console.log(trips)
 
+  // load activities 
+  useEffect(() => {
+    fetch("/activities")
+      .then((res) => {
+        if (res.ok) {
+          res.json().then(data => {
+            setActivities(data);
+            setLoading(false);
+          })
+        } else {
+          res.json().then(data => setErrors(data.error))
+        }
+      })
+  }, []);
+
+
 
 
 // helper functions 
@@ -53,6 +70,10 @@ function handleLogin(user){
 
 function handleNewTrip(newTrip) {
   setTrips([...trips, newTrip])
+}
+
+function addActivity(newActivity){
+  setActivities([...activities, newActivity])
 }
 
 
@@ -66,7 +87,7 @@ function handleNewTrip(newTrip) {
         <Route exact path="/" element={<Login onLogin={handleLogin} />} />
         <Route exact path="/signup" element={<SignupPage setUser={setUser} />} />
         <Route exact path="/create" element={<CreateTrip user={user} handleNewTrip={handleNewTrip} />} />
-        <Route exact path="/trip/:id" element={<TripDetails user={user} />} />
+        <Route exact path="/trip/:id" element={<TripDetails user={user} addActivity={addActivity} />} />
         
       </Routes>
     </div>
