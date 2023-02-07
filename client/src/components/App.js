@@ -7,6 +7,7 @@ import NavBar from "./NavBar";
 import SignupPage from "./SignupPage";
 import TripContainer from "./TripContainer";
 import TripDetails from "./TripDetails";
+import ActivityEdit from "./ActivityEdit";
 
 
 function App() {
@@ -60,7 +61,7 @@ function App() {
       })
   }, []);
 
-
+  
 
 
 // helper functions 
@@ -76,6 +77,26 @@ function addActivity(newActivity){
   setActivities([...activities, newActivity])
 }
 
+function handleActivityEdit(updatedActivity) {
+  const newActivityarr = activities.map((activity) => {
+    if (activity.id === updatedActivity.id) {
+      return updatedActivity;
+    }
+    return activity;;
+  });
+  setActivities(newActivityarr);
+}
+
+
+function handleUpdatedActivite(updatedActivity){
+  handleActivityEdit(updatedActivity);
+}
+
+function deleteActivity(id) {
+  const updatedActivity = activities.filter((activity) => activity.id !== id);
+  setActivities(updatedActivity);
+}
+
 
   if (loading) return <h1>Loading...</h1>
   return(
@@ -87,8 +108,8 @@ function addActivity(newActivity){
         <Route exact path="/" element={<Login onLogin={handleLogin} />} />
         <Route exact path="/signup" element={<SignupPage setUser={setUser} />} />
         <Route exact path="/create" element={<CreateTrip user={user} handleNewTrip={handleNewTrip} />} />
-        <Route exact path="/trip/:id" element={<TripDetails user={user} addActivity={addActivity} />} />
-        
+        <Route exact path="/trip/:id" element={<TripDetails user={user} addActivity={addActivity} activities={activities}  />} />
+        <Route exact path="/activities/:id/edit" element={<ActivityEdit handleEdit={handleUpdatedActivite} handleDelete={deleteActivity} />} />
       </Routes>
     </div>
   )

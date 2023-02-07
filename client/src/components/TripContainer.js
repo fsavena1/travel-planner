@@ -4,6 +4,9 @@ import Row from "react-bootstrap/Row";
 
 function TripContainer({trips}){
 
+  // date filter 
+  
+
     const tripDiv = trips.map((trip) => {
         return (
             <TripCard 
@@ -25,7 +28,7 @@ function TripContainer({trips}){
         }}
       >
         <Container >
-          <Row xs={1}>{tripDiv}</Row>
+          <Row xs={2}>{tripDiv}</Row>
         </Container>
       </div>
     )

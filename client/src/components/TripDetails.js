@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function TripDetails({ user, addActivity }) {
+function TripDetails({ user, addActivity}) {
   const [tripDetails, setTripDetails] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -53,19 +53,28 @@ function TripDetails({ user, addActivity }) {
     setNewActivity(!newActivity);
   }
 
-
-  const activityCard = tripDetails.activities?.map(activity => {
+  const activityCard = tripDetails.activities?.map((activity) => {
     return (
-        <Card style={{
-            margin: '10px auto 0 auto',
-            width: '70%',
-            padding: '10px'
-        }}>
-            <h1>{activity.name}</h1>
-            <p>{activity.date}</p>
-        </Card>
-    )
-})
+      <Card
+        style={{
+          margin: "10px auto 0 auto",
+          width: "70%",
+          padding: "10px",
+        }}
+        id={activity.id}
+      >
+        <h1>{activity.name}</h1>
+        <p>{activity.date}</p>
+        <a href={activity.link}> {activity.link}</a>
+        <Button href={`/activities/${activity.id}/edit`}>Edit</Button>
+      </Card>
+    );
+    
+  });
+
+
+  // accoridan inside card to expand and show memory
+  // add edit button
 
   return (
     <div
@@ -107,7 +116,7 @@ function TripDetails({ user, addActivity }) {
             onSubmit={handleNewActivity}
           >
             <Form.Group className="mb-3" controlId="formBasicReview">
-              <Form.Label>Review</Form.Label>
+              <Form.Label>New Activity! </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Activity Name"
@@ -157,9 +166,7 @@ function TripDetails({ user, addActivity }) {
           </div>
         )}
       </div>
-      <div>
-        {activityCard}
-      </div>
+      <div>{activityCard}</div>
     </div>
   );
 }

@@ -29,7 +29,7 @@ class ActivitiesController < ApplicationController
     end 
 
     def destroy
-        activity = activity_params
+        activity = activity_find
         if activity.present?
             activity.destroy
             head :no_content

@@ -46,7 +46,7 @@ function CreateTrip({ user , handleNewTrip}){
             <h1> Enter Trip Details</h1>
             <Form onSubmit={handleTrip} >
                 <Form.Group className="mb-3" controlId="formBasicUserName">
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label>Destination</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Enter Destination..."
@@ -56,7 +56,7 @@ function CreateTrip({ user , handleNewTrip}){
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicFirstName">
-                    <Form.Label>Image Link</Form.Label>
+                    <Form.Label>Start Date</Form.Label>
                     <Form.Control
                         type="date"
                         placeholder="Enter Start Date..."
@@ -66,7 +66,7 @@ function CreateTrip({ user , handleNewTrip}){
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicLastName">
-                    <Form.Label>Description</Form.Label>
+                    <Form.Label>End Date</Form.Label>
                     <Form.Control
                         type="date"
                         placeholder="Enter End Date..."
@@ -76,7 +76,7 @@ function CreateTrip({ user , handleNewTrip}){
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Price</Form.Label>
+                    <Form.Label>Image</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Enter Image..."
