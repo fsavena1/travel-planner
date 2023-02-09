@@ -17,7 +17,7 @@ function NavBar({ user, setUser}){
     return (
         <Navbar variant='dark' bg='dark' fixed='top'>
             <Container>
-                <Navbar.Brand href='/nfts'>Name Goes Here</Navbar.Brand>
+                <Navbar.Brand href='/nfts'>Trip Planner</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav"></Navbar.Collapse>
                 <Nav className="me-auto">

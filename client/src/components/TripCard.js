@@ -2,8 +2,11 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
 
-function TripCard({id, destination, start, end, image }){
+
+function TripCard({id, destination, start, end, image, trips }){
     let navigate = useNavigate();
+
+
 
 
     return(

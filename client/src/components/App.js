@@ -14,6 +14,7 @@ function App() {
   const [user, setUser] = useState(null)
   const [trips, setTrips] = useState([])
   const [activities, setActivities] = useState([])
+  const [memories, setMemories] = useState([])
   const [loading, setLoading] = useState(true)
   const [errors, setErrors] = useState('')
 
@@ -44,7 +45,7 @@ function App() {
         }
       })
   }, []);
-  console.log(trips)
+
 
   // load activities 
   useEffect(() => {
@@ -61,7 +62,20 @@ function App() {
       })
   }, []);
 
-  
+  // load memories 
+  useEffect(() => {
+    fetch("/memories")
+      .then((res) => {
+        if (res.ok) {
+          res.json().then(data => {
+            setMemories(data);
+            setLoading(false);
+          })
+        } else {
+          res.json().then(data => setErrors(data.error))
+        }
+      })
+  }, []);
 
 
 // helper functions 
@@ -75,6 +89,10 @@ function handleNewTrip(newTrip) {
 
 function addActivity(newActivity){
   setActivities([...activities, newActivity])
+}
+
+function addMemories(newMemory){
+  setMemories([...memories, newMemory])
 }
 
 function handleActivityEdit(updatedActivity) {
@@ -104,11 +122,11 @@ function deleteActivity(id) {
       <NavBar user={user} setUser={setUser} />
 
       <Routes>
-        <Route exact path= "/trips" element={<TripContainer trips={trips} />} />
+        <Route exact path= "/trips" element={<TripContainer trips={trips}  />} />
         <Route exact path="/" element={<Login onLogin={handleLogin} />} />
         <Route exact path="/signup" element={<SignupPage setUser={setUser} />} />
         <Route exact path="/create" element={<CreateTrip user={user} handleNewTrip={handleNewTrip} />} />
-        <Route exact path="/trip/:id" element={<TripDetails user={user} addActivity={addActivity} activities={activities}  />} />
+        <Route exact path="/trip/:id" element={<TripDetails user={user} addActivity={addActivity} activities={activities} addMemories={addMemories}  />} />
         <Route exact path="/activities/:id/edit" element={<ActivityEdit handleEdit={handleUpdatedActivite} handleDelete={deleteActivity} />} />
       </Routes>
     </div>

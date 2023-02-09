@@ -3,8 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import ActivityDetails from "./ActivityDetails";
 
-function TripDetails({ user, addActivity}) {
+function TripDetails({ user, addActivity, addMemories }) {
   const [tripDetails, setTripDetails] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -54,27 +55,11 @@ function TripDetails({ user, addActivity}) {
   }
 
   const activityCard = tripDetails.activities?.map((activity) => {
-    return (
-      <Card
-        style={{
-          margin: "10px auto 0 auto",
-          width: "70%",
-          padding: "10px",
-        }}
-        id={activity.id}
-      >
-        <h1>{activity.name}</h1>
-        <p>{activity.date}</p>
-        <a href={activity.link}> {activity.link}</a>
-        <Button href={`/activities/${activity.id}/edit`}>Edit</Button>
-      </Card>
-    );
-    
+    console.log(activity)
+    return <ActivityDetails activityID={activity.id} addMemories={addMemories} activity={activity} />;
   });
 
-
-  // accoridan inside card to expand and show memory
-  // add edit button
+  // console.log(tripDetails);
 
   return (
     <div

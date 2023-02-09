@@ -1,4 +1,4 @@
 class MemorySerializer < ActiveModel::Serializer
-  attributes :id, :image, :caption
-  has_one :activity
+  attributes :id, :image, :caption, :activity_id
+  belongs_to :activity
 end

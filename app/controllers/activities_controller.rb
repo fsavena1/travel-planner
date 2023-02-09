@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
     end 
     
     def show 
-        activity = Activity.find_by(id: session[:user_id])
+        activity = activity_find
         if activity.present?
             render json: activity, status: 200
         else 

@@ -16,6 +16,7 @@ function TripContainer({trips}){
             start={trip.date_start}
             end={trip.date_end}
             image={trip.image}
+            trips={trips}
             />
         )
     })
