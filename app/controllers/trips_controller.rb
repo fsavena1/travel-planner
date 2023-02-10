@@ -1,10 +1,10 @@
 class TripsController < ApplicationController
-    before_action :check_owner, only: [:index, :update, :destroy]
+    before_action :check_owner, only: [:update, :destroy]
 
     def index
-        @trips = current_user.trips
+        @trips = current_user.trips.sorted_by_start_date
         render json: @trips, status: 200
-    end
+      end
 
     
     def show 
@@ -27,6 +27,7 @@ class TripsController < ApplicationController
 
     def create
         trip = Trip.create!(trip_params)
+        NotificationMailer.trip_notification(@trip).deliver_now
         render json: trip, status: 201
     rescue ActiveRecord::RecordInvalid => e 
         render json: {errors: e.record.errors.full_messages}, status: 406

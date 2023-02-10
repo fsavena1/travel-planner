@@ -29,7 +29,9 @@ function TripContainer({trips}){
         }}
       >
         <Container >
-          <Row xs={2}>{tripDiv}</Row>
+          <Row xs={2}>
+            {tripDiv}
+            </Row>
         </Container>
       </div>
     )
