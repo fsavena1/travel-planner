@@ -1,8 +1,11 @@
 class TripsController < ApplicationController
+    before_action :check_owner, only: [:index, :update, :destroy]
 
-    def index 
-        render json: Trip.all, status: 200
-    end 
+    def index
+        @trips = current_user.trips
+        render json: @trips, status: 200
+    end
+
     
     def show 
         trip = trip_find
@@ -47,6 +50,16 @@ class TripsController < ApplicationController
 
     def trip_params 
         params.permit(:destination, :image, :date_start, :date_end, :user_id)
-       
     end 
+
+    def current_user
+        @current_user ||= User.find(session[:user_id])
+    end
+
+    def check_owner
+        trip = Trip.find_by(id: params[:id])
+        if trip.present? && trip.user != current_user
+            render json: {error: "Not authorized"}, status: 403
+        end
+    end
 end
