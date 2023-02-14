@@ -28,10 +28,6 @@ class TripsController < ApplicationController
 
     def create
         trip = Trip.create!(trip_params)
-        user = User.find(trip.user_id)
-        if user.email.present?
-          NotificationMailer.trip_notification(user, trip).deliver_now
-        end
         render json: trip, status: 201
       rescue ActiveRecord::RecordInvalid => e
         render json: { errors: e.record.errors.full_messages }, status: 406
