@@ -25,7 +25,9 @@ function MemoryDetails({ memory, tripDetails }) {
 
   console.log(tripDetails)
 
- 
+
+const destinationArr = [tripDetails.trip?.destination]
+console.log(destinationArr)
 
 
   return (
@@ -42,7 +44,7 @@ function MemoryDetails({ memory, tripDetails }) {
           <img src={memory.image} alt={memory.caption} />
           <p>{memory.caption}</p>
           <div>
-            <TwitterShareButton url={'http://localhost:4000/trip/2'} title={`${memory.caption} on my ${tripDetails.trip.destination} vacation`}>
+            <TwitterShareButton title={`${memory.caption}`} hashtags={destinationArr} url={'http://localhost:4000/trip/2'} >
               <TwitterIcon size={32} round />
             </TwitterShareButton>
         </div>
