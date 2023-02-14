@@ -7,13 +7,9 @@ class Trip < ApplicationRecord
 
   scope :sorted_by_start_date, -> { order(date_start: :asc) }
 
-  # scope :owned_by, -> (user) { where(user: user) }
 
-
-  # def self.by_date(date_start, date_end)
-  #   where("date_start BETWEEN ? AND ?", date_start, date_end)
-  # end
-
-
+  def sorted_activities
+    activities.order(date: :asc)
+  end
 
 end

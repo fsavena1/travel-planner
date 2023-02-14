@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import MemoryDetails from "./MemoryDetails";
 import Form from "react-bootstrap/Form";
 
-function ActivityDetails({ activityID, addMemories, activity }) {
+function ActivityDetails({ activityID, addMemories, activity, tripDetails }) {
   const [activityDetails, setActivityDetails] = useState([]);
   const [image, setImage] = useState('')
   const [caption, setCaption] = useState('')
@@ -54,14 +54,14 @@ function handleMemoryToggle() {
 
   const memoryCard = activityDetails.memories?.map((memory) => {
     
-    return <MemoryDetails memory={memory} />;
+    return <MemoryDetails memory={memory} tripDetails={tripDetails} />;
   });
 
   return (
     <Card
       style={{
         margin: "10px auto 0 auto",
-        width: "70%",
+        width: "50%",
         padding: "10px",
       }}
       id={activity.id}

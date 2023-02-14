@@ -8,11 +8,12 @@ class TripsController < ApplicationController
 
     
     def show 
-        trip = trip_find
-        if trip.present?
-            render json: trip, status: 200
+        @trip = trip_find
+        @sorted_activities = @trip.sorted_activities
+        if @trip.present?
+            render json: { trip: @trip, activities: @sorted_activities }
         else 
-            render json: {error: "Not authorized"}, status: 404
+            render json: {error: "Trip not Found"}, status: 404
         end
     end 
 
@@ -27,11 +28,14 @@ class TripsController < ApplicationController
 
     def create
         trip = Trip.create!(trip_params)
-        NotificationMailer.trip_notification(@trip).deliver_now
+        user = User.find(trip.user_id)
+        if user.email.present?
+          NotificationMailer.trip_notification(user, trip).deliver_now
+        end
         render json: trip, status: 201
-    rescue ActiveRecord::RecordInvalid => e 
-        render json: {errors: e.record.errors.full_messages}, status: 406
-    end 
+      rescue ActiveRecord::RecordInvalid => e
+        render json: { errors: e.record.errors.full_messages }, status: 406
+      end
 
     def destroy
         trip = trip_find

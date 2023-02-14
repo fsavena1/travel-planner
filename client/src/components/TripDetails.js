@@ -35,7 +35,7 @@ function TripDetails({ user, addActivity, addMemories }) {
         link: link,
         date: date,
         user_id: user.id,
-        trip_id: tripDetails.id,
+        trip_id: tripDetails.trip?.id,
       }),
     }).then((r) => {
       if (r.ok) {
@@ -55,8 +55,8 @@ function TripDetails({ user, addActivity, addMemories }) {
   }
 
   const activityCard = tripDetails.activities?.map((activity) => {
-    console.log(activity)
-    return <ActivityDetails activityID={activity.id} addMemories={addMemories} activity={activity} />;
+    // console.log(activity)
+    return <ActivityDetails activityID={activity.id} addMemories={addMemories} activity={activity} tripDetails={tripDetails}/>;
   });
 
   // console.log(tripDetails);
@@ -77,19 +77,22 @@ function TripDetails({ user, addActivity, addMemories }) {
       >
         <Card
           style={{
-            padding: "20px",
+            margin: "10px auto 0 auto",
+            width: "50%",
+            padding: "10px",
           }}
         >
           <Card.Title className="text-center">
-            {tripDetails.destination}
+            {tripDetails.trip?.destination}
           </Card.Title>
           <Card.Img
-            src={tripDetails.image}
-            alt={tripDetails.destinaiton}
+            src={tripDetails.trip?.image}
+            alt={tripDetails.trip?.destination}
             className="text-center"
+            // style={{height:'400px', width: '400px'}}
           />
           <Card.Text className="text-center">
-            {tripDetails.date_start} - {tripDetails.date_end}
+            {tripDetails.trip?.date_start} - {tripDetails.trip?.date_end}
           </Card.Text>
         </Card>
       </div>

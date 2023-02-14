@@ -1,4 +1,9 @@
-<h1>Hello,</h1>
-<p>Your trip to <%= @trip.destination %> has been created!</p>
-<p>Start date: <%= @trip.date_start %></p>
-<p>End date: <%= @trip.date_end %></p>
+<h1>Hello, <%= @user.name %></h1>
+<p>Your trip has been created!</p>
+<p>Trip details:</p>
+<ul>
+  <li>Destination: <%= @trip.destination %></li>
+  <li>Start date: <%= @trip.start_date %></li>
+  <li>End date: <%= @trip.end_date %></li>
+</ul>
+<p>Have a great trip!</p>

@@ -1,28 +1,60 @@
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
+import { TwitterShareButton, TwitterIcon } from "react-share";
 
-function MemoryDetails({memory}){
+function MemoryDetails({ memory, tripDetails }) {
+  // const [shareButton, setShareButton] = useState(false);
 
-    return(
-        <Accordion>
-        <Accordion.Header>Memories</Accordion.Header>
-        <Accordion.Body>
+  // const handleShareClick = () => {
+  //   FB.ui(
+  //     {
+  //       method: "share",
+  //       href: memory.image,
+  //       mobile_iframe: true,
+  //     },
+  //     (response) => {
+  //       if (response && !response.error_code) {
+  //         setShareButton(false);
+  //       } else {
+  //         setShareButton(true);
+  //       }
+  //     }
+  //   );
+  // };
+
+  console.log(tripDetails)
+
+ 
+
+
+  return (
+    <Accordion>
+      <Accordion.Header>Memories</Accordion.Header>
+      <Accordion.Body>
         <Card
-            style={{
-              margin: "10px auto 0 auto",
-              width: "70%",
-              padding: "10px",
-            }}
-           
-          >
-            <img src={memory.image} alt={memory.caption}/>
-            <p>{memory.caption}</p>
-            </Card>
-        </Accordion.Body>
-      </Accordion>
-
-      
-    )
+          style={{
+            margin: "10px auto 0 auto",
+            width: "70%",
+            padding: "10px",
+          }}
+        >
+          <img src={memory.image} alt={memory.caption} />
+          <p>{memory.caption}</p>
+          <div>
+            <TwitterShareButton url={'http://localhost:4000/trip/2'} title={`${memory.caption} on my ${tripDetails.trip.destination} vacation`}>
+              <TwitterIcon size={32} round />
+            </TwitterShareButton>
+        </div>
+          {/* {shareButton ? (
+            <p>An error occurred while sharing.</p>
+          ) : (
+            <button onClick={handleShareClick}>Share on Facebook</button>
+          )} */}
+        </Card>
+      </Accordion.Body>
+    </Accordion>
+  );
 }
 
-export default MemoryDetails
+export default MemoryDetails;

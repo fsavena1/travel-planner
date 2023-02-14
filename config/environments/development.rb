@@ -72,10 +72,11 @@ Rails.application.configure do
     port:                 3000,
     domain:               'example.com',
     user_name:            'travelapp13@gmail.com',
-    password:             <addPassword>,
+    password:             'TravelApp@13',
     authentication:       'plain',
     enable_starttls_auto: true
   }
+
 
 
 end
