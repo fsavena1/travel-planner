@@ -1,4 +1,9 @@
 class Trip < ApplicationRecord
+
+  geocoded_by :full_address
+  after_validation :geocode
+
+
   validates :destination, :date_start, :date_end, presence: true
 
   belongs_to :user
@@ -10,6 +15,12 @@ class Trip < ApplicationRecord
 
   def sorted_activities
     activities.order(date: :asc)
+  end
+
+ 
+
+  def full_address
+    "#{destination}"
   end
 
 end

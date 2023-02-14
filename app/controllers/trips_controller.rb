@@ -26,12 +26,20 @@ class TripsController < ApplicationController
         render json: {errors: e.record.errors.full_messages}, status: 406
     end 
 
+ 
+
     def create
-        trip = Trip.create!(trip_params)
-        render json: trip, status: 201
-      rescue ActiveRecord::RecordInvalid => e
-        render json: { errors: e.record.errors.full_messages }, status: 406
+      @trip = Trip.new(trip_params)
+      if @trip.save
+        @trip.update(
+          latitude: Geocoder.search("#{@trip.destination} ").first.coordinates[0], 
+          longitude: Geocoder.search("#{@trip.destination} ").first.coordinates[1]
+          )
+        render json: @trip, status: :created
+      else
+        render json: {errors: @trip.errors}, status: :unprocessable_entity
       end
+    end
 
     def destroy
         trip = trip_find

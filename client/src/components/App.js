@@ -8,6 +8,7 @@ import SignupPage from "./SignupPage";
 import TripContainer from "./TripContainer";
 import TripDetails from "./TripDetails";
 import ActivityEdit from "./ActivityEdit";
+import ProfilePage from "./ProfilePage";
 
 
 function App() {
@@ -17,7 +18,6 @@ function App() {
   const [memories, setMemories] = useState([])
   const [loading, setLoading] = useState(true)
   const [errors, setErrors] = useState('')
-
 
   // Auth 
   useEffect(() => {
@@ -128,6 +128,7 @@ function deleteActivity(id) {
         <Route exact path="/create" element={<CreateTrip user={user} handleNewTrip={handleNewTrip} />} />
         <Route exact path="/trip/:id" element={<TripDetails user={user} addActivity={addActivity} activities={activities} addMemories={addMemories}  />} />
         <Route exact path="/activities/:id/edit" element={<ActivityEdit handleEdit={handleUpdatedActivite} handleDelete={deleteActivity} />} />
+        <Route exact path="user/:id" element={<ProfilePage user={user} />} />
       </Routes>
     </div>
   )
