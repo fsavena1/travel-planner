@@ -39,7 +39,7 @@ function ActivityEdit({ handleEdit, handleDelete }) {
       if (r.ok) {
         r.json().then((data) => {
           handleEdit(data);
-          nav(`/trips`);
+          nav(`/mytrips`);
         });
       } else {
         r.json().then((data) => {
@@ -57,7 +57,7 @@ function ActivityEdit({ handleEdit, handleDelete }) {
         handleError(r.status);
       } else if (r.ok) {
         handleDelete(id);
-        nav("/trips");
+        nav("/mytrips");
       }
     });
   }

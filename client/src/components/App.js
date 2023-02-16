@@ -122,7 +122,7 @@ function deleteActivity(id) {
       <NavBar user={user} setUser={setUser} />
 
       <Routes>
-        <Route exact path= "/trips" element={<TripContainer trips={trips}  />} />
+        <Route exact path= "/mytrips" element={<TripContainer trips={trips}  />} />
         <Route exact path="/" element={<Login onLogin={handleLogin} />} />
         <Route exact path="/signup" element={<SignupPage setUser={setUser} />} />
         <Route exact path="/create" element={<CreateTrip user={user} handleNewTrip={handleNewTrip} />} />

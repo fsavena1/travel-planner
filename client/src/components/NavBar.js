@@ -17,11 +17,11 @@ function NavBar({ user, setUser}){
     return (
         <Navbar variant='dark' bg='dark' fixed='top'>
             <Container>
-                <Navbar.Brand href='/trips'>Trip Planner</Navbar.Brand>
+                <Navbar.Brand href='/mytrips'>Trip Planner</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav"></Navbar.Collapse>
                 <Nav className="me-auto">
-                    <Nav.Link href="/trips">Home</Nav.Link>
+                    <Nav.Link href="/mytrips">Home</Nav.Link>
                     <Nav.Link href="/create">Create Trip</Nav.Link>
                     <NavDropdown title='My Profile' id="basic-nav-dropdown">
                         <NavDropdown.Item href={ user ? `/user/${user.id}` : null }>View my Profile</NavDropdown.Item>

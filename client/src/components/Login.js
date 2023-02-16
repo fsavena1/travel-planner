@@ -25,7 +25,7 @@ function Login({ onLogin }) {
             .then(r => {
                 if (r.ok) {
                     r.json().then(user => {
-                        navigate(`/trips`)
+                        navigate(`/mytrips`)
                         onLogin(user)
                         console.log(user)
                     })

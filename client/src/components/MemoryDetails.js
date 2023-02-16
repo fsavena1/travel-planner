@@ -44,7 +44,7 @@ console.log(destinationArr)
           <img src={memory.image} alt={memory.caption} />
           <p>{memory.caption}</p>
           <div>
-            <TwitterShareButton title={`${memory.caption}`} hashtags={destinationArr} url={'http://localhost:4000/trip/2'} >
+            <TwitterShareButton title={`${memory.caption}`} hashtags={destinationArr} url={'https://travel-app-oqck.onrender.com'} >
               <TwitterIcon size={32} round />
             </TwitterShareButton>
         </div>

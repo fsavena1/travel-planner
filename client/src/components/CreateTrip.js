@@ -30,7 +30,7 @@ function CreateTrip({ user , handleNewTrip}){
             if (r.ok) {
                 r.json().then(data => {
                     handleNewTrip(data)
-                    nav('/trips')
+                    nav('/mytrips')
                    
                 })
             } else {

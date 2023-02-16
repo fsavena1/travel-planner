@@ -31,7 +31,7 @@ function SignUpPage({ setUser }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((data) => {
-          navigate("/trips")
+          navigate("/mytrips")
           setUser(data);
           
         });
