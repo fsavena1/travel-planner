@@ -23,11 +23,17 @@ class MemoriesController < ApplicationController
     end 
 
     def create
-        memory = Memory.create!(memory_params)
-        render json: memory, status: 201
-    rescue ActiveRecord::RecordInvalid => e 
-        render json: {errors: e.record.errors.full_messages}, status: 406
-    end 
+        memory = Memory.new(memory_params)
+        if params[:image].present?
+          memory.image.attach(params[:image])
+        end
+        if memory.save
+          render json: memory, status: :created
+        else
+          render json: { error: memory.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+      
 
     def destroy
         memory = memory_find
