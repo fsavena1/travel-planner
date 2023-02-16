@@ -36,7 +36,7 @@ function Login({ onLogin }) {
     }
 
     return (
-        <div style={{ margin: '100px', width: '80%' }}>
+        <div style={{ margin: '100px', width: '50%' }}>
             <h1></h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicUserName">
